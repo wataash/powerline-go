@@ -117,6 +117,10 @@ func initSegments(p *powerline, mods []string) {
 	for i, module := range mods {
 		wg.Add(1)
 		go func(w *sync.WaitGroup, i int, module string, c chan prioritizedSegments) {
+			// if module == "host" && p.hostname == "wsh64" {
+			// 	wg.Done()
+			// 	return
+			// }
 			elem, ok := modules[module]
 			if ok {
 				c <- prioritizedSegments{
@@ -395,14 +399,16 @@ func (p *powerline) draw() string {
 			background = p.theme.CmdFailedBg
 		}
 
-		buffer.WriteString(p.fgColor(foreground))
-		buffer.WriteString(p.bgColor(background))
-		buffer.WriteString(p.shellInfo.rootIndicator)
+		_ = foreground
+		_ = background
+		// buffer.WriteString(p.fgColor(foreground))
+		// buffer.WriteString(p.bgColor(background))
+		// buffer.WriteString(p.shellInfo.rootIndicator)
+		// buffer.WriteString(p.reset)
+		// buffer.WriteString(p.fgColor(background))
+		// buffer.WriteString(p.symbolTemplates.Separator)
 		buffer.WriteString(p.reset)
-		buffer.WriteString(p.fgColor(background))
-		buffer.WriteString(p.symbolTemplates.Separator)
-		buffer.WriteString(p.reset)
-		buffer.WriteRune(' ')
+		// buffer.WriteRune(' ')
 	}
 
 	if *p.args.Eval {

@@ -24,6 +24,10 @@ func segmentLoad(p *powerline) []pwl.Segment {
 		load = a.Load15
 	}
 
+	if load <= float64(c)*p.theme.LoadThresholdBad {
+		return nil
+	}
+
 	if load > float64(c)*p.theme.LoadThresholdBad {
 		bg = p.theme.LoadHighBg
 	}

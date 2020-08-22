@@ -19,6 +19,10 @@ func getMd5(text string) []byte {
 }
 
 func segmentHost(p *powerline) []pwl.Segment {
+	if p.hostname == "wsh64" {
+		return nil
+	}
+
 	var hostPrompt string
 	var foreground, background uint8
 

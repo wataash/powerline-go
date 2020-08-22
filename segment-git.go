@@ -175,6 +175,12 @@ func segmentGit(p *powerline) []pwl.Segment {
 	var branch string
 
 	if branchInfo["local"] != "" {
+		if branchInfo["local"] == "master" {
+			branchInfo["local"] = "M"
+		}
+		if branchInfo["local"] == "develop" {
+			branchInfo["local"] = "D"
+		}
 		ahead, _ := strconv.ParseInt(branchInfo["ahead"], 10, 32)
 		stats.ahead = int(ahead)
 
